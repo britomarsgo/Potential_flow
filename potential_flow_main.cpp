@@ -1,3 +1,9 @@
+/*
+Project 1- Potential flow and studies of SOR, LSOR, Jacobi, Gauss-Seidel and impact of relaxation methods 
+Computer code written by Alisson Vinicius Brito Lopes
+*/
+
+
 #include <iostream>
 #include <fstream>
 #include <stdio.h>
@@ -99,7 +105,7 @@ class Vetor{
 
 };
 
-class Matrix{ // Classe para imprimir matrix USAR SÒ nome de classe maisculo
+class Matrix{ // Classe para imprimir matrix USAR SÃ’ nome de classe maisculo
 
 public:
 
@@ -122,7 +128,7 @@ class esc {
     int IMAX, JMAX, ILE, ITE;
     double XSF, YSF;
 
-// Criando ponteiro duplos e simples para Alocação dinâmica de memoria e "zeramento" de vetores e matrizes na memoria do computador
+// Criando ponteiro duplos e simples para AlocaÃ§Ã£o dinÃ¢mica de memoria e "zeramento" de vetores e matrizes na memoria do computador
 
     double **LPhi, **Cij, **Phi, **Npj, **u, **v, **uaer, **cp, **X, **Y;
     double  *x_i, *y_j, *dPhi_dy, *dPhi_dy_tresmeios, *LAx, *LBx, *LCx, * LAy, *LBy, *LCy;
@@ -133,7 +139,7 @@ void inicializaMatriz_LAx( int IMAX){
 
     int i;
 
-    LAx = new double [IMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÇÕES
+    LAx = new double [IMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÃ‡Ã•ES
 
     for (i = 0; i < IMAX; i++){
 
@@ -145,7 +151,7 @@ void inicializaMatriz_LBx( int IMAX){
 
     int i;
 
-    LBx = new double [IMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÇÕES
+    LBx = new double [IMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÃ‡Ã•ES
 
     for (i = 0; i < IMAX; i++){
 
@@ -157,7 +163,7 @@ void inicializaMatriz_LCx( int IMAX){
 
     int i;
 
-    LCx = new double [IMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÇÕES
+    LCx = new double [IMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÃ‡Ã•ES
 
     for (i = 0; i < IMAX; i++){
 
@@ -170,7 +176,7 @@ void inicializaMatriz_LAy( int JMAX){
 
     int j;
 
-    LAy = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÇÕES
+    LAy = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÃ‡Ã•ES
 
     for (j = 0; j < JMAX; j++){
 
@@ -182,7 +188,7 @@ void inicializaMatriz_LBy( int JMAX){
 
     int j;
 
-    LBy = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÇÕES
+    LBy = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÃ‡Ã•ES
 
     for (j = 0; j < JMAX; j++){
 
@@ -193,7 +199,7 @@ void inicializaMatriz_LBy( int JMAX){
 void inicializaMatriz_LCy( int JMAX){
    int j;
 
-    LCy = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÇÕES
+    LCy = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÃ‡Ã•ES
 
     for (j = 0; j < JMAX; j++){
 
@@ -202,9 +208,9 @@ void inicializaMatriz_LCy( int JMAX){
 }
 
 
-void inicializaMatriz_dPhi_dy_tresmeios(int ITE, int ILE, int IMAX, int JMAX, double deltaX, double th, double uinf){ // X do plano fisico é exatamente igual a Xi do plano computacional
+void inicializaMatriz_dPhi_dy_tresmeios(int ITE, int ILE, int IMAX, int JMAX, double deltaX, double th, double uinf){ // X do plano fisico Ã© exatamente igual a Xi do plano computacional
 
-// Calculando a malha para a direção x, onde  ILE<=i<=ITE
+// Calculando a malha para a direÃ§Ã£o x, onde  ILE<=i<=ITE
 
     int i;
 
@@ -217,9 +223,9 @@ void inicializaMatriz_dPhi_dy_tresmeios(int ITE, int ILE, int IMAX, int JMAX, do
     }
 }
 
-void inicializaMatriz_dPhi_dy(int ITE, int ILE, int IMAX, double deltaX){ // X do plano fisico é exatamente igual a Xi do plano computacional
+void inicializaMatriz_dPhi_dy(int ITE, int ILE, int IMAX, double deltaX){ // X do plano fisico Ã© exatamente igual a Xi do plano computacional
 
-// Calculando a malha para a direção x, onde  ILE<=i<=ITE
+// Calculando a malha para a direÃ§Ã£o x, onde  ILE<=i<=ITE
 
     int i;
 
@@ -231,9 +237,9 @@ void inicializaMatriz_dPhi_dy(int ITE, int ILE, int IMAX, double deltaX){ // X d
 }
 
 
-void inicializaMatriz_x_i(int ITE, int ILE, int IMAX, double deltaX){ // X do plano fisico é exatamente igual a Xi do plano computacional
+void inicializaMatriz_x_i(int ITE, int ILE, int IMAX, double deltaX){ // X do plano fisico Ã© exatamente igual a Xi do plano computacional
 
-// Calculando a malha para a direção x, onde  ILE<=i<=ITE
+// Calculando a malha para a direÃ§Ã£o x, onde  ILE<=i<=ITE
 
     int i;
 
@@ -244,9 +250,9 @@ void inicializaMatriz_x_i(int ITE, int ILE, int IMAX, double deltaX){ // X do pl
     }
 }
 
-void inicializaMatriz_y_j(int ITE, int ILE, int JMAX, double deltaX){ // X do plano fisico é exatamente igual a Xi do plano computacional
+void inicializaMatriz_y_j(int ITE, int ILE, int JMAX, double deltaX){ // X do plano fisico Ã© exatamente igual a Xi do plano computacional
 
-// Calculando a malha para a direção x, onde  ILE<=i<=ITE
+// Calculando a malha para a direÃ§Ã£o x, onde  ILE<=i<=ITE
 
     int j;
 
@@ -275,7 +281,7 @@ void inicializaMatriz_LPhi(int IMAX, int JMAX){ // MATRIX DE RESIDUOS
         LPhi [i] = new double[JMAX];
     }
 
-    // Inicializando a matriz com as condições de contorno de : Entrada, superior e saída
+    // Inicializando a matriz com as condiÃ§Ãµes de contorno de : Entrada, superior e saÃ­da
 
     for (i = 0; i < IMAX; i++){
          for (j = 0; j < JMAX; j++){
@@ -294,7 +300,7 @@ void inicializaMatriz_Phi(int IMAX, int JMAX){ // POTENCIAL Zerando e ja assumin
         Phi [i] = new double[JMAX];
     }
 
-    // Inicializando a matriz com as condições de contorno de : Entrada, superior e saída
+    // Inicializando a matriz com as condiÃ§Ãµes de contorno de : Entrada, superior e saÃ­da
 
     for (i = 0; i < IMAX; i++){
          for (j = 0; j < JMAX; j++){
@@ -313,7 +319,7 @@ void inicializaMatriz_Cij(int IMAX, int JMAX){ // UPDATE Zerando e ja assumindo 
         Cij [i] = new double[JMAX];
     }
 
-    // Inicializando a matriz com as condições de contorno de : Entrada, superior e saída
+    // Inicializando a matriz com as condiÃ§Ãµes de contorno de : Entrada, superior e saÃ­da
 
     for (i = 0; i < IMAX; i++){
          for (j = 0; j < JMAX; j++){
@@ -332,7 +338,7 @@ void inicializaMatriz_Npj(int IMAX, int JMAX){
         Npj [i] = new double[JMAX];
     }
 
-    // Inicializando a matriz com as condições de contorno de : Entrada, superior e saída
+    // Inicializando a matriz com as condiÃ§Ãµes de contorno de : Entrada, superior e saÃ­da
 
     for (i = 0; i < IMAX; i++){
          for (j = 0; j < JMAX; j++){
@@ -344,7 +350,7 @@ void inicializaMatriz_Npj(int IMAX, int JMAX){
 
 void inicializaMatriz_DELTAXX(int IMAX){
 
-// Calculando a malha para a direção x, onde  ILE<=i<=ITE
+// Calculando a malha para a direÃ§Ã£o x, onde  ILE<=i<=ITE
 
     int i;
 
@@ -357,7 +363,7 @@ void inicializaMatriz_DELTAXX(int IMAX){
 
 void inicializaMatriz_DELTAYY(int JMAX){
 
-// Calculando a malha para a direção x, onde  ILE<=i<=ITE
+// Calculando a malha para a direÃ§Ã£o x, onde  ILE<=i<=ITE
 
     int j;
 
@@ -369,11 +375,11 @@ void inicializaMatriz_DELTAYY(int JMAX){
 }
 
 
-// Alocação de memoria e inicialização de variaiveis para montagem da Matrix Tridiagonal
+// AlocaÃ§Ã£o de memoria e inicializaÃ§Ã£o de variaiveis para montagem da Matrix Tridiagonal
 void inicializaMatriz_MD( int JMAX){
    int j;
 
-    MD = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÇÕES
+    MD = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÃ‡Ã•ES
 
     for (j = 0; j < JMAX; j++){
 
@@ -384,7 +390,7 @@ void inicializaMatriz_MD( int JMAX){
 void inicializaMatriz_UP( int JMAX){
    int j;
 
-    UP = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÇÕES
+    UP = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÃ‡Ã•ES
 
     for (j = 0; j < JMAX; j++){
 
@@ -395,7 +401,7 @@ void inicializaMatriz_UP( int JMAX){
 void inicializaMatriz_LD( int JMAX){
    int j;
 
-    LD = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÇÕES
+    LD = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÃ‡Ã•ES
 
     for (j = 0; j < JMAX; j++){
 
@@ -406,7 +412,7 @@ void inicializaMatriz_LD( int JMAX){
 void inicializaMatriz_RHS( int JMAX){
    int j;
 
-    RHS = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÇÕES
+    RHS = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÃ‡Ã•ES
 
     for (j = 0; j < JMAX; j++){
 
@@ -415,11 +421,11 @@ void inicializaMatriz_RHS( int JMAX){
 }
 
 
-// Inicializando e alocando espaço para as variaveis calculadas no algoritmo de Thomas
+// Inicializando e alocando espaÃ§o para as variaveis calculadas no algoritmo de Thomas
 void inicializaMatriz_A( int JMAX){
    int j;
 
-    A = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÇÕES
+    A = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÃ‡Ã•ES
 
     for (j = 0; j < JMAX; j++){
 
@@ -430,7 +436,7 @@ void inicializaMatriz_A( int JMAX){
 void inicializaMatriz_B( int JMAX){
    int j;
 
-    B = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÇÕES
+    B = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÃ‡Ã•ES
 
     for (j = 0; j < JMAX; j++){
 
@@ -441,7 +447,7 @@ void inicializaMatriz_B( int JMAX){
 void inicializaMatriz_C( int JMAX){
    int j;
 
-    C = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÇÕES
+    C = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÃ‡Ã•ES
 
     for (j = 0; j < JMAX; j++){
 
@@ -452,7 +458,7 @@ void inicializaMatriz_C( int JMAX){
 void inicializaMatriz_D( int JMAX){
    int j;
 
-    D = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÇÕES
+    D = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÃ‡Ã•ES
 
     for (j = 0; j <JMAX; j++){
 
@@ -470,7 +476,7 @@ void inicializaMatriz_u(int IMAX, int JMAX){ // UPDATE Zerando e ja assumindo ch
         u [i] = new double[JMAX];
     }
 
-    // Inicializando a matriz com as condições de contorno de : Entrada, superior e saída
+    // Inicializando a matriz com as condiÃ§Ãµes de contorno de : Entrada, superior e saÃ­da
 
     for (i = 0; i < IMAX; i++){
          for (j = 0; j < JMAX; j++){
@@ -489,7 +495,7 @@ void inicializaMatriz_v(int IMAX, int JMAX){ // UPDATE Zerando e ja assumindo ch
         v [i] = new double[JMAX];
     }
 
-    // Inicializando a matriz com as condições de contorno de : Entrada, superior e saída
+    // Inicializando a matriz com as condiÃ§Ãµes de contorno de : Entrada, superior e saÃ­da
 
     for (i = 0; i < IMAX; i++){
          for (j = 0; j < JMAX; j++){
@@ -508,7 +514,7 @@ void inicializaMatriz_uaer(int IMAX, int JMAX){ // UPDATE Zerando e ja assumindo
         uaer [i] = new double[JMAX];
     }
 
-    // Inicializando a matriz com as condições de contorno de : Entrada, superior e saída
+    // Inicializando a matriz com as condiÃ§Ãµes de contorno de : Entrada, superior e saÃ­da
 
     for (i = 0; i < IMAX; i++){
          for (j = 0; j < JMAX; j++){
@@ -527,7 +533,7 @@ void inicializaMatriz_cp(int IMAX, int JMAX){ // UPDATE Zerando e ja assumindo c
         cp [i] = new double[JMAX];
     }
 
-    // Inicializando a matriz com as condições de contorno de : Entrada, superior e saída
+    // Inicializando a matriz com as condiÃ§Ãµes de contorno de : Entrada, superior e saÃ­da
 
     for (i = 0; i < IMAX; i++){
          for (j = 0; j < JMAX; j++){
@@ -539,7 +545,7 @@ void inicializaMatriz_cp(int IMAX, int JMAX){ // UPDATE Zerando e ja assumindo c
 void inicializaMatriz_cplinha( int IMAX){
    int i;
 
-    cplinha = new double [IMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÇÕES
+    cplinha = new double [IMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÃ‡Ã•ES
 
     for (i = 0; i < IMAX; i++){
 
@@ -557,7 +563,7 @@ void inicializaMatriz_X(int IMAX, int JMAX){ // UPDATE Zerando e ja assumindo ch
         X [i] = new double[JMAX];
     }
 
-    // Inicializando a matriz com as condições de contorno de : Entrada, superior e saída
+    // Inicializando a matriz com as condiÃ§Ãµes de contorno de : Entrada, superior e saÃ­da
 
     for (i = 0; i < IMAX; i++){
          for (j = 0; j < JMAX; j++){
@@ -576,7 +582,7 @@ void inicializaMatriz_Y(int IMAX, int JMAX){ // UPDATE Zerando e ja assumindo ch
         Y [i] = new double[JMAX];
     }
 
-    // Inicializando a matriz com as condições de contorno de : Entrada, superior e saída
+    // Inicializando a matriz com as condiÃ§Ãµes de contorno de : Entrada, superior e saÃ­da
 
     for (i = 0; i < IMAX; i++){
          for (j = 0; j < JMAX; j++){
@@ -588,7 +594,7 @@ void inicializaMatriz_Y(int IMAX, int JMAX){ // UPDATE Zerando e ja assumindo ch
 /*void inicializaMatriz_M( int JMAX){
    int j;
 
-    M = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÇÕES
+    M = new double [JMAX]; // VER AO CERTO ESSA QUANTIDADE DE POSIÃ‡Ã•ES
 
     for (j = 0; j < JMAX; j++){
 
@@ -599,7 +605,7 @@ void inicializaMatriz_Y(int IMAX, int JMAX){ // UPDATE Zerando e ja assumindo ch
 
 void inicializarMatrizes(int ILE, int ITE, int IMAX, int JMAX, double XSF, double YSF, double th, double uinf, double alfa, double r, double eps, double deltaX){
 
-    // Inicialização de matrizes para geração da malha computacional
+    // InicializaÃ§Ã£o de matrizes para geraÃ§Ã£o da malha computacional
 
     inicializaMatriz_LPhi(IMAX, JMAX);
     inicializaMatriz_Phi(IMAX, JMAX);
@@ -623,13 +629,13 @@ void inicializarMatrizes(int ILE, int ITE, int IMAX, int JMAX, double XSF, doubl
     inicializaMatriz_DELTAXX(IMAX);
     inicializaMatriz_DELTAYY(JMAX);
 
-    // Inicialização para Montagem da Tridiagonal
+    // InicializaÃ§Ã£o para Montagem da Tridiagonal
     inicializaMatriz_MD(JMAX);
     inicializaMatriz_UP(JMAX);
     inicializaMatriz_LD(JMAX);
     inicializaMatriz_RHS(JMAX);
 
-    // Inicialização para o Algoritmo de THOMAS
+    // InicializaÃ§Ã£o para o Algoritmo de THOMAS
 
     inicializaMatriz_A(JMAX);
     inicializaMatriz_B(JMAX);
@@ -670,7 +676,7 @@ esc Resultados (esc esc, int i, int j, int ILE, int ITE, int IMAX,int JMAX, doub
 int main(int argc, char*argv[]){
 
 
-// Contador de Tempo computacional para avaliação dos metodos
+// Contador de Tempo computacional para avaliaÃ§Ã£o dos metodos
 
 clock_t TempoInicial;
 TempoInicial = clock();
@@ -690,12 +696,12 @@ resmaxiter = new double [maxit];
 int i,j,kiter = 0;
 int ILE = 11; //correspondente ao bordo de ataque do perfil
 int ITE = 31; //correspondente ao bordo de fuga do perfil
-int IMAX = 41; // número de pontos na direção x
-int JMAX = 12; // número de pontos na direção y
-double XSF = 1.25; // fator de estiramento ("Stretching") da malha para a direção x
-double YSF = 1.25; // fator de estiramento ("Stretching") da malha para a direção y
+int IMAX = 41; // nÃºmero de pontos na direÃ§Ã£o x
+int JMAX = 12; // nÃºmero de pontos na direÃ§Ã£o y
+double XSF = 1.25; // fator de estiramento ("Stretching") da malha para a direÃ§Ã£o x
+double YSF = 1.25; // fator de estiramento ("Stretching") da malha para a direÃ§Ã£o y
 
-//CALCULO DO r Médio baseando-se no calculo do r otimo para as coordenadas x e y;
+//CALCULO DO r MÃ©dio baseando-se no calculo do r otimo para as coordenadas x e y;
 
 //double rotimo, rotimox, rotimoy, px, py;
 //
@@ -718,13 +724,13 @@ double uinf = 1.0;
 
 // Iterations parameters for Numerical Methods
 double alfa = 2.0;
-double r = 1.9; // Fator de Relaxação do SOR
+double r = 1.9; // Fator de RelaxaÃ§Ã£o do SOR
 //double omega = 1.7;
 
 // Convergence Criterion
 double eps = 0.100*pow(10,-3); // Limite maquina para o SOR -12
 
-// Calculo do deltaX na direção X apenas no intervalo em cima do perfil biconvexo
+// Calculo do deltaX na direÃ§Ã£o X apenas no intervalo em cima do perfil biconvexo
 double deltaX = 1.0/(ITE-ILE);
 
 esc esc;
@@ -734,7 +740,7 @@ esc esc;
 esc.inicializarMatrizes(ILE, ITE, IMAX, JMAX, XSF,YSF, th, uinf,alfa,r, eps,deltaX);
 
 
-esc = malhacomputacional (esc, i, j, ILE, ITE, IMAX, JMAX,  XSF, YSF, deltaX, uinf, th); // Função que retorna a malha computacional
+esc = malhacomputacional (esc, i, j, ILE, ITE, IMAX, JMAX,  XSF, YSF, deltaX, uinf, th); // FunÃ§Ã£o que retorna a malha computacional
 esc = calculocoeficientes (esc, i, j, ILE, ITE, IMAX, JMAX, XSF, YSF, deltaX);
 
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -745,19 +751,19 @@ esc = calculocoeficientes (esc, i, j, ILE, ITE, IMAX, JMAX, XSF, YSF, deltaX);
 
 for (kiter = 0; kiter < maxit; kiter ++){
 
-     //Atualização da condição de contorno C[i][0] = C[i][1]
+     //AtualizaÃ§Ã£o da condiÃ§Ã£o de contorno C[i][0] = C[i][1]
     for ( i = 1; i < IMAX-1; i++){
-        esc.Cij[i][0] = esc.Cij[i][1]; // Condições para a linha j =0 e j = 1
+        esc.Cij[i][0] = esc.Cij[i][1]; // CondiÃ§Ãµes para a linha j =0 e j = 1
     }
 
- //Calculo da correção no potencial
+ //Calculo da correÃ§Ã£o no potencial
     for ( i = 0; i < IMAX; i++){
         for (j = 0; j < JMAX; j++){
             esc.Phi[i][j] = esc.Phi[i][j] + esc.Cij[i][j];
        }
     }
 
- //Calculo e atualização do residuo
+ //Calculo e atualizaÃ§Ã£o do residuo
     for ( i = 1; i < IMAX-1; i++){
         for (j = 1; j < JMAX-1; j++){
             esc.LPhi[i][j] = esc.LAx[i]*esc.Phi[i-1][j] + esc.LBx[i]*esc.Phi[i][j] + esc.LCx[i]*esc.Phi[i+1][j] + esc.LAy[j]*esc.Phi[i][j-1] + esc.LBy[j]*esc.Phi[i][j] + esc.LCy[j]*esc.Phi[i][j+1];
@@ -767,7 +773,7 @@ for (kiter = 0; kiter < maxit; kiter ++){
   //Matrix::imprimir(esc.LPhi,IMAX,JMAX);
 
 /*%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%   Esquemas de Iteração   %%
+%%%   Esquemas de IteraÃ§Ã£o   %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%*/
 
 //esc = Jacobimetodo(esc, i, j, ILE, ITE, IMAX, JMAX, XSF, YSF,deltaX);
@@ -824,11 +830,11 @@ esc malhacomputacional (esc esc, int i, int j, int ILE, int ITE, int IMAX,int JM
 
     //Vetor::imprimir(esc.y_j,JMAX);
 
-/* Condições de contorno - uinf */
+/* CondiÃ§Ãµes de contorno - uinf */
 
   for(j = 0; j < JMAX; j++){
 
-    esc.Phi[0][j] = uinf*esc.x_i[0]; // INFLOW a valiar a questão do x[i]
+    esc.Phi[0][j] = uinf*esc.x_i[0]; // INFLOW a valiar a questÃ£o do x[i]
     esc.Phi[IMAX-1][j] = uinf*esc.x_i[IMAX-1]; // OUTFLOW
 
   }
@@ -837,7 +843,7 @@ esc malhacomputacional (esc esc, int i, int j, int ILE, int ITE, int IMAX,int JM
 
     esc.Phi[i][JMAX-1] = uinf*esc.x_i[i]; // PARTE SUPERIOR DO DOMINIO
 
-    if ( i >= (ILE-1) && i<=(ITE-1)){ // definição do contorno na parede
+    if ( i >= (ILE-1) && i<=(ITE-1)){ // definiÃ§Ã£o do contorno na parede
 
        esc.dPhi_dy_tresmeios[i] = uinf*th*2.0*(1.0 - 2.0*esc.x_i[i]);
        esc.Phi[i][0] = - (esc.y_j[1] - esc.y_j[0])*esc.dPhi_dy_tresmeios[i]; //       esc.Phi[i][0] = esc.Phi[i][1] - (esc.y_j[1] - esc.y_j[0])*esc.dPhi_dy_tresmeios[i];
@@ -967,7 +973,7 @@ return esc;
 
 esc LGS (esc esc, int i, int j, int ILE, int ITE, int IMAX,int JMAX, double XSF, double YSF, double deltaX){
 
-     double *x; // Armazenando espaço e zerando o vetor solução do Thomas
+     double *x; // Armazenando espaÃ§o e zerando o vetor soluÃ§Ã£o do Thomas
      x = new double [JMAX];
 
      for (i = 0; i < JMAX; i++){
@@ -980,7 +986,7 @@ esc LGS (esc esc, int i, int j, int ILE, int ITE, int IMAX,int JMAX, double XSF,
 
    for ( i = 1; i < IMAX-1; i++){
 
-        //esc.Cij[i][0] = esc.Cij[i][1]; // Condições para a linha j = 1 e j = 2
+        //esc.Cij[i][0] = esc.Cij[i][1]; // CondiÃ§Ãµes para a linha j = 1 e j = 2
 
         for (j = 1; j < JMAX-1; j++){ //
 
@@ -1013,7 +1019,7 @@ esc LGS (esc esc, int i, int j, int ILE, int ITE, int IMAX,int JMAX, double XSF,
 
             TDMA(esc.A, esc.B, esc.C, esc.D, x,(JMAX-2));
         //ThomasAlgorithm(JMAX-2,esc.A,esc.B,esc.C,x, esc.D);
-        // Atualização da condição de contorno C[i][0] = C[i][1]
+        // AtualizaÃ§Ã£o da condiÃ§Ã£o de contorno C[i][0] = C[i][1]
 
             for ( jj = 1; jj < JMAX-1; jj++){
             esc.Cij[i][jj] = x[jj-1];
@@ -1027,7 +1033,7 @@ esc LGS (esc esc, int i, int j, int ILE, int ITE, int IMAX,int JMAX, double XSF,
 
 esc SLOR (esc esc, int i, int j, int ILE, int ITE, int IMAX,int JMAX, double XSF, double YSF, double deltaX, double r){
 
-     double *x; // Armazenando espaço e zerando o vetor solução do Thomas
+     double *x; // Armazenando espaÃ§o e zerando o vetor soluÃ§Ã£o do Thomas
      x = new double [JMAX];
 
      for (i = 0; i < JMAX; i++){
@@ -1040,7 +1046,7 @@ esc SLOR (esc esc, int i, int j, int ILE, int ITE, int IMAX,int JMAX, double XSF
 
    for ( i = 1; i < IMAX-1; i++){
 
-        //esc.Cij[i][0] = esc.Cij[i][1]; // Condições para a linha j = 1 e j = 2
+        //esc.Cij[i][0] = esc.Cij[i][1]; // CondiÃ§Ãµes para a linha j = 1 e j = 2
 
         for (j = 1; j < JMAX-1; j++){ //
 
@@ -1164,7 +1170,7 @@ esc Resultados (esc esc, int i, int j, int ILE, int ITE, int IMAX,int JMAX, doub
 
         for (i = 1; i< IMAX-1; i++){
 
-            if ( i >= (ILE-1) && i<=(ITE-1)){ // definição do contorno na parede
+            if ( i >= (ILE-1) && i<=(ITE-1)){ // definiÃ§Ã£o do contorno na parede
                 //esc.dPhi_dy_tresmeios[i] = uinf*th*2.0*(1.0 - 2.0*esc.x_i[i]);
                 esc.cplinha[i] = - (1.0 - (((esc.u[i][1] + esc.u[i][0])/2.0)*((esc.u[i][1] + esc.u[i][0])/2.0) + (uinf*esc.dPhi_dy_tresmeios[i])*(uinf*esc.dPhi_dy_tresmeios[i]))/(uinf*uinf));
             }
